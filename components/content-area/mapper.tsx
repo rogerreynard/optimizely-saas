@@ -7,6 +7,7 @@ function ContentAreaMapper({
   isVisualBuilder = false,
   experienceElements,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   blocks?: any[] | null
   preview?: boolean
   isVisualBuilder?: boolean

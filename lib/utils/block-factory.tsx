@@ -1,7 +1,7 @@
 // lib/optimizely/utils/block-factory.ts
-
 import { createElement, ComponentType } from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ComponentMap = Record<string, ComponentType<any>>
 
 export default function blocksMapperFactory<TMap extends ComponentMap>(
