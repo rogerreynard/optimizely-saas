@@ -54,5 +54,6 @@ export async function GET(request: NextRequest) {
     newUrl = `/${loc}/draft/${ver}/${hierarchicalUrlWithoutLocale}`
   }
 
+  console.log(`Redirecting to draft URL: ${newUrl}`)
   redirect(`${newUrl}`)
 }
