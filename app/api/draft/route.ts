@@ -11,6 +11,8 @@ export async function GET(request: NextRequest) {
   const ver = searchParams.get('ver')
   const loc = searchParams.get('loc')
 
+  console.log(`Draft request received with token: ${token}, key: ${key}, ver: ${ver}, loc: ${loc}`)
+
   if (!ver || !token || !key) {
     return notFound()
   }
