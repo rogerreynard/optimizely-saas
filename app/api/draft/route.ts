@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     return notFound()
   }
 
-  ver = (Number(ver) - 1).toString()
+  ver = "132" // ROGER hardcode for testing
 
   const response = await optimizely.GetContentByKeyAndVersion(
     { key, ver },
