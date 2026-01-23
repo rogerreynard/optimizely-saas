@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from 'next/font/google'
+import Script from 'next/script';
 import '@/app/globals.css'
 import { LOCALES } from '@/lib/optimizely/utils/language'
 import { Header } from '@/components/layout/header'
@@ -33,6 +34,11 @@ export default async function RootLayout({
   const { locale } = await params
   return (
     <html lang={locale}>
+      <head>
+        <Script
+          src="https://app-rba101saasx6b3qt002.cms.optimizely.com/util/javascript/communicationinjector.js"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
