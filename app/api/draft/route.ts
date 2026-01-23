@@ -33,6 +33,8 @@ export async function GET(request: NextRequest) {
     let msg = 'ROGER Bad Request'
     if (response.data) {
       msg += ` - data is good ${JSON.stringify(response.data)}`
+    } else {
+      msg += ' - data is null'
     }
 
     if (response.data?._Content) {
