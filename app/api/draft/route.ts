@@ -8,14 +8,14 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const token = searchParams.get('preview_token')
   const key = searchParams.get('key')
-  let ver = searchParams.get('ver')
+  const ver = searchParams.get('ver')
   const loc = searchParams.get('loc')
 
   if (!ver || !token || !key) {
     return notFound()
   }
 
-  ver = "132" // ROGER hardcode for testing
+  //ver = "132" // ROGER hardcode for testing
 
   const response = await optimizely.GetContentByKeyAndVersion(
     { key, ver },
