@@ -30,7 +30,8 @@ export async function GET(request: NextRequest) {
 
   const content = response.data?._Content?.item
   if (!content) {
-    return new NextResponse('Bad Request', { status: 400 })
+    //return new NextResponse('Bad Request', { status: 400 })
+    return new NextResponse('ROGER Bad Request', { status: 400 })
   }
   ;(await draftMode()).enable()
   let newUrl = ''
