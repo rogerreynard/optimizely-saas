@@ -15,8 +15,6 @@ export async function GET(request: NextRequest) {
     return notFound()
   }
 
-  //ver = "132" // ROGER hardcode for testing
-
   const response = await optimizely.GetContentByKeyAndVersion(
     { key, ver },
     { preview: false }
@@ -32,18 +30,7 @@ export async function GET(request: NextRequest) {
 
   const content = response.data?._Content?.item
   if (!content) {
-    let msg = 'ROGER Bad Request'
-    if (response.data) {
-      msg += ` - data is good ${JSON.stringify(response.data)}`
-    } else {
-      msg += ' - data is null'
-    }
-
-    if (response.data?._Content) {
-      msg += ` - _Content is good ${JSON.stringify(response.data._Content)}`
-    }
-    //return new NextResponse('Bad Request', { status: 400 })
-    return new NextResponse(msg, { status: 400 })
+    return new NextResponse('Bad Request', { status: 400 })
   }
   ;(await draftMode()).enable()
   let newUrl = ''
