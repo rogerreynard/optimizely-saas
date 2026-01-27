@@ -8,12 +8,14 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const token = searchParams.get('preview_token')
   const key = searchParams.get('key')
-  const ver = searchParams.get('ver')
+  let ver = searchParams.get('ver')
   const loc = searchParams.get('loc')
 
   if (!ver || !token || !key) {
     return notFound()
   }
+
+  ver = (Number(ver) - 1).toString()
 
   const response = await optimizely.GetContentByKeyAndVersion(
     { key, ver },
@@ -30,7 +32,19 @@ export async function GET(request: NextRequest) {
 
   const content = response.data?._Content?.item
   if (!content) {
-    return new NextResponse('Bad Request', { status: 400 })
+    let msg = 'ROGER Bad Request'
+    if (response.data) {
+      msg += ` - data is good ${JSON.stringify(response.data)}`
+    } else {
+      msg += ' - data is null'
+    }
+
+if (response.data?._Content) {
+  msg += ` - _Content is good ${JSON.stringify(response.data._Content)}`
+}
+//return new NextResponse('Bad Request', { status: 400 })
+return new NextResponse(msg, { status: 400 })
+    //return new NextResponse('Bad Request', { status: 400 })
   }
   ;(await draftMode()).enable()
   let newUrl = ''
